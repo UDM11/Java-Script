@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main {
+    width: 50%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.firstDiv, .secondDiv, .weatherInfo{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+ #weatherInfo{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#cityName, #searchBtn, .firstDiv > button {
+    padding: 10px 50px 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+}
+
+#searchBtn{
+    margin-top: 5px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+
+#currlck {
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #2196F3;
+    color: white;
+    cursor: pointer;
+}
+
+#currlck:hover {
+    background-color: #0b7dda;
+
+}
+
+.firstDiv > button{
+    width: 85%;
+    cursor: pointer;
+}
+
+.firstDiv > p, .desc{
+    text-align: center;
+    font-size: 1.7em;
+
+}
+
+#temp{
+    font-size: 2em;
+}
+
+#city{
+    font-size: 2em;
+}
+
+.otherInfo{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.wind > p{
+    font-size: 1.2em;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    .main {
+        width: 90%;
+        height: auto;
+    }
+    #weatherInfo {
+        width: 100%;
+    }
+    #cityName, #searchBtn, #currlck {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+    }
+    .otherInfo {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}
+@media screen and (max-width: 400px) {
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    .main {
+        width: 95%;
+        height: auto;
+    }
+    #weatherInfo {
+        width: 100%;
+    }
+    #cityName, #searchBtn, #currlck {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .otherInfo {
+        flex-direction: column;
+        align-items: center;
+    }
+}
