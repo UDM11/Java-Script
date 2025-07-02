@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #111;
+      color: #0f0;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="output">Loading...</div>
+
+  <script>
+    // Fake API function that returns a Promise
+    function fakeApi() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("🎉 Welcome Umesh!");
+        }, 2000); // 2 seconds delay
+      });
+    }
+
+    // Get the output element
+    const output = document.getElementById("output");
+
+    // Call the fake API
+    fakeApi()
+      .then(data => {
+        output.textContent = "Data Loaded: " + data;
+      })
+      .catch(error => {
+        output.textContent = "Error: " + error;
+      })
+      .finally(() => {
+        console.log("API call finished");
+      });
+  </script>
+</body>
+</html>

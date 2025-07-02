@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise Real World Example</title>
+</head>
+<body>
+    <h2 id="status">Fetching user data...</h2>
+
+    <script>
+        // Simulated API call function that returns a Promise
+        function fetchUser(userId) {
+            return new Promise((resolve, reject) => {
+                // Simulate network delay with setTimeout
+                setTimeout(() => {
+                    const users = {
+                        1: { id: 1, name: "Alice", age: 25 },
+                        2: { id: 2, name: "Bob", age: 30 },
+                    };
+
+                    if (users[userId]) {
+                        resolve(users[userId]); // Data found, resolve Promise
+                    } else {
+                        reject("User not found"); // Reject Promise on error
+                    }
+                }, 1500);
+            });
+        }
+
+        const status = document.getElementById("status");
+
+        // Using the Promise to fetch user data
+        fetchUser(1)
+            .then(user => {
+                status.textContent = `User found: ${user.name}, Age: ${user.age}`;
+            })
+            .catch(error => {
+                status.textContent = `Error: ${error}`;
+            })
+            .finally(() => {
+                console.log("Fetch attempt finished.");
+            });
+    </script>
+</body>
+</html>

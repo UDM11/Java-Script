@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h2 id="status">Loading user data...</h2>
+  <script>
+    // Simulated async function returning a Promise
+    function fetchUserData(userId) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (userId === 1) {
+            resolve({ id: 1, name: "Umesh", role: "Student" });
+          } else {
+            reject("User not found");
+          }
+        }, 2000); // 2 seconds delay
+      });
+    }
+
+    // Async function using await and try/catch
+    async function displayUser(userId) {
+      const statusEl = document.getElementById("status");
+      try {
+        const user = await fetchUserData(userId);
+        statusEl.textContent = `User Loaded: ${user.name} (${user.role})`;
+      } catch (error) {
+        statusEl.textContent = `Error: ${error}`;
+      }
+    }
+
+    // Call the async function
+    displayUser(1);   // Change to a different number to trigger error
+  </script>
+</body>
+</html>
