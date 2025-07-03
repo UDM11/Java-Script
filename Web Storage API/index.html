@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Web Storage API Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; }
+        label, input, button { display: block; margin: 0.5rem 0; }
+        .output { background: #f0f0f0; padding: 1rem; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <h1>Web Storage API Demo</h1>
+
+    <h2>Local Storage</h2>
+    <label for="localName">Enter your name:</label>
+    <input type="text" id="localName" placeholder="Name" />
+    <button id="saveLocal">Save to localStorage</button>
+    <button id="loadLocal">Load from localStorage</button>
+    <button id="clearLocal">Clear localStorage</button>
+    <div id="localOutput" class="output"></div>
+
+    <hr />
+
+    <h2>Session Storage</h2>
+    <label for="sessionToken">Enter a session token:</label>
+    <input type="text" id="sessionToken" placeholder="Token" />
+    <button id="saveSession">Save to sessionStorage</button>
+    <button id="loadSession">Load from sessionStorage</button>
+    <button id="clearSession">Clear sessionStorage</button>
+    <div id="sessionOutput" class="output"></div>
+
+    <script>
+        // Local Storage elements
+        const localNameInput = document.getElementById('localName');
+        const localOutput = document.getElementById('localOutput');
+
+        document.getElementById('saveLocal').addEventListener('click', () => {
+            const name = localNameInput.value.trim();
+            if (name) {
+                localStorage.setItem('username', name);
+                localOutput.textContent = `Saved "${name}" to localStorage.`;
+                localNameInput.value = '';
+            } else {
+                localOutput.textContent = 'Please enter a name to save.';
+            }
+        });
+
+        document.getElementById('loadLocal').addEventListener('click', () => {
+            const savedName = localStorage.getItem('username');
+            if (savedName) {
+                localOutput.textContent = `Loaded from localStorage: "${savedName}"`;
+            } else {
+                localOutput.textContent = 'No name found in localStorage.';
+            }
+        });
+
+        document.getElementById('clearLocal').addEventListener('click', () => {
+            localStorage.removeItem('username');
+            localOutput.textContent = 'Cleared username from localStorage.';
+        });
+
+        // Session Storage elements
+        const sessionTokenInput = document.getElementById('sessionToken');
+        const sessionOutput = document.getElementById('sessionOutput');
+
+        document.getElementById('saveSession').addEventListener('click', () => {
+            const token = sessionTokenInput.value.trim();
+            if (token) {
+                sessionStorage.setItem('token', token);
+                sessionOutput.textContent = `Saved token "${token}" to sessionStorage.`;
+                sessionTokenInput.value = '';
+            } else {
+                sessionOutput.textContent = 'Please enter a token to save.';
+            }
+        });
+
+        document.getElementById('loadSession').addEventListener('click', () => {
+            const savedToken = sessionStorage.getItem('token');
+            if (savedToken) {
+                sessionOutput.textContent = `Loaded from sessionStorage: "${savedToken}"`;
+            } else {
+                sessionOutput.textContent = 'No token found in sessionStorage.';
+            }
+        });
+
+        document.getElementById('clearSession').addEventListener('click', () => {
+            sessionStorage.removeItem('token');
+            sessionOutput.textContent = 'Cleared token from sessionStorage.';
+        });
+    </script>
+</body>
+</html>
