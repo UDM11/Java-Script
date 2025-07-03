@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JavaScript Prototype and new Keyword Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; }
+        button { padding: 0.5rem 1rem; margin-top: 1rem; }
+        #output { background: #f0f0f0; padding: 1rem; margin-top: 1rem; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Prototype and new Keyword Demo</h1>
+
+    <button id="createKeyboards">Create Keyboard Instances</button>
+    <div id="output"></div>
+
+    <script>
+        class Keyboard {
+            constructor(layout) {
+                this.layout = layout;
+            }
+
+            // Method defined on Keyboard.prototype
+            type() {
+                return `Typing with a ${this.layout} keyboard.`;
+            }
+        }
+
+        const outputDiv = document.getElementById('output');
+        const button = document.getElementById('createKeyboards');
+
+        button.addEventListener('click', () => {
+            const kb1 = new Keyboard('QWERTY');
+            const kb2 = new Keyboard('AZERTY');
+
+            let output = '';
+            output += kb1.type() + '\n';
+            output += kb2.type() + '\n';
+
+            // Check that the 'type' method is shared via prototype
+            output += '\nAre kb1.type and kb2.type the same function? ' + (kb1.type === kb2.type);
+
+            outputDiv.textContent = output;
+        });
+    </script>
+</body>
+</html>

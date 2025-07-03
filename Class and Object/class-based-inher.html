@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Inheritance Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; }
+    button { padding: 0.5rem 1rem; margin-top: 1rem; }
+    #output { background: #f0f0f0; padding: 1rem; margin-top: 1rem; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>Class Inheritance in JavaScript</h1>
+
+  <button id="showInfo">Create Animal and Dog</button>
+  <div id="output"></div>
+
+  <script>
+    // Parent class
+    class Animal {
+      constructor(name) {
+        this.name = name;
+      }
+
+      speak() {
+        return `${this.name} makes a sound.`;
+      }
+    }
+
+    // Child class inherits from Animal
+    class Dog extends Animal {
+      constructor(name, breed) {
+        super(name); // Call the constructor of Animal
+        this.breed = breed;
+      }
+
+      // Override speak() method
+      speak() {
+        return `${this.name} the ${this.breed} barks.`;
+      }
+    }
+
+    const btn = document.getElementById('showInfo');
+    const output = document.getElementById('output');
+
+    btn.addEventListener('click', () => {
+      const animal = new Animal('Tiger');
+      const dog = new Dog('Buddy', 'Labrador');
+
+      let result = '';
+      result += 'Animal:\n' + animal.speak() + '\n\n';
+      result += 'Dog (inherited & overridden):\n' + dog.speak();
+
+      output.textContent = result;
+    });
+  </script>
+</body>
+</html>

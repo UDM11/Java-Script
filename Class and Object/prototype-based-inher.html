@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prototype-Based Inheritance Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; }
+    button { padding: 0.5rem 1rem; margin-top: 1rem; }
+    #output { background: #f0f0f0; padding: 1rem; margin-top: 1rem; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>Prototype-Based Inheritance in JavaScript</h1>
+
+  <button id="run">Run Prototype Inheritance</button>
+  <div id="output"></div>
+
+  <script>
+    // Constructor function for Animal
+    function Animal(name) {
+      this.name = name;
+    }
+
+    // Method on Animal prototype
+    Animal.prototype.speak = function() {
+      return this.name + ' makes a sound.';
+    };
+
+    // Constructor function for Dog
+    function Dog(name, breed) {
+      Animal.call(this, name); // Call the Animal constructor
+      this.breed = breed;
+    }
+
+    // Inherit from Animal prototype
+    Dog.prototype = Object.create(Animal.prototype);
+
+    // Fix the constructor pointer
+    Dog.prototype.constructor = Dog;
+
+    // Override the speak() method
+    Dog.prototype.speak = function() {
+      return this.name + ' the ' + this.breed + ' barks.';
+    };
+
+    // Run the example on button click
+    document.getElementById('run').addEventListener('click', () => {
+      const animal = new Animal('Tiger');
+      const dog = new Dog('Buddy', 'German Shepherd');
+
+      let result = '';
+      result += 'Animal:\n' + animal.speak() + '\n\n';
+      result += 'Dog (inherited & overridden):\n' + dog.speak();
+
+      document.getElementById('output').textContent = result;
+    });
+  </script>
+</body>
+</html>

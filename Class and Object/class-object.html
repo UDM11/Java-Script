@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JavaScript Class and Object Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; }
+        button { margin-top: 1rem; padding: 0.5rem 1rem; }
+        #output { margin-top: 1rem; background: #f0f0f0; padding: 1rem; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Class and Object Demo</h1>
+
+    <button id="showPerson">Create and Show Person Info</button>
+    <div id="output"></div>
+
+    <script>
+        // Define a class called Person
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            greet() {
+                return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+            }
+        }
+
+        const outputDiv = document.getElementById('output');
+        const button = document.getElementById('showPerson');
+
+        button.addEventListener('click', () => {
+            // Create an object (instance) of the Person class
+            const person1 = new Person('Hari', 24);
+            // Call the greet method and display output
+            outputDiv.textContent = person1.greet();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>call, apply, bind Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; }
+        button { padding: 0.5rem 1rem; margin-top: 1rem; }
+        #output { background: #f0f0f0; padding: 1rem; margin-top: 1rem; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>JavaScript call(), apply(), and bind() Demo</h1>
+
+    <button id="runDemo">Run Demo</button>
+    <div id="output"></div>
+
+    <script>
+        function greet(greeting, punctuation) {
+            return `${greeting}, my name is ${this.name}${punctuation}`;
+        }
+
+        const person = { name: 'Hari' };
+
+        document.getElementById('runDemo').addEventListener('click', () => {
+            let output = '';
+
+            // call()
+            output += 'Using call():\n';
+            output += greet.call(person, 'Hello', '!') + '\n\n';
+
+            // apply()
+            output += 'Using apply():\n';
+            output += greet.apply(person, ['Hi', '!!']) + '\n\n';
+
+            // bind()
+            const boundGreet = greet.bind(person);
+            output += 'Using bind():\n';
+            output += boundGreet('Hey', '!!!') + '\n';
+
+            document.getElementById('output').textContent = output;
+        });
+    </script>
+</body>
+</html>
